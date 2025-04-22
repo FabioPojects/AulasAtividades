@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/ListaDois/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ListaDois/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ListaTres/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ListaTres/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ListaUm/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ListaUm/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ListaZero/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ListaZero/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TesteAula/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TesteAula/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
