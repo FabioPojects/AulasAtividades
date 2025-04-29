@@ -7,40 +7,65 @@ import java.util.ArrayList;
 import java.util.List;
 
     @Entity
-    @DiscriminatorValue("venda_livro")
     public class Venda {
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "numero")
         private Integer numero;
 
-        @OneToMany
+        @ManyToMany
         private List<Livro> livros = new ArrayList<>();
-
-        @Column(name = "numVendas")
-        private Integer numVendas;
 
         @Column(name = "cliente")
         private String clientes;
 
         @Column(name = "valor")
-        private Double valor;
+        private Float valor;
 
-        public void addLivro(Livro livro, Integer index) {
-            this.livros.add(index, livro);
+        public Venda() {
         }
 
-        public Venda(List<Livro> livros, Integer numVendas, String clientes, Double valor) {
+        public void addLivro(Livro livro) {
+            this.livros.add(livro);
+        }
+
+        public Venda(List<Livro> livros, String clientes, Float valor) {
             this.livros = livros;
-            this.numVendas = numVendas;
             this.clientes = clientes;
             this.valor = valor;
         }
 
-        public List<Livro> listarLivro(){
+        public Integer getNumero() {
+            return numero;
+        }
+
+        public void setNumero(Integer numero) {
+            this.numero = numero;
+        }
+
+        public List<Livro> getLivros() {
             return livros;
+        }
 
+        public void setLivros(List<Livro> livros) {
+            this.livros = livros;
+        }
 
+        public String getClientes() {
+            return clientes;
+        }
+
+        public void setClientes(String clientes) {
+            this.clientes = clientes;
+        }
+
+        public Float getValor() {
+            return valor;
+        }
+
+        public void setValor(Float valor) {
+            this.valor = valor;
         }
     }
 
