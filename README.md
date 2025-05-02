@@ -39,7 +39,7 @@
 
 ```bash
 # Clone este repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/FabioPojects/AulasAtividade.git
 
 # Acesse a pasta do projeto
 cd AulasAtividades
