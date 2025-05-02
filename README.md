@@ -1,49 +1,48 @@
-<h1 align="center">🚀 Nome do Projeto 🚀</h1>
+# 🎬 Exercício: Controle de Estoque
 
-<p align="center">
-  Um projeto desenvolvido com dedicação, colaboração e muita vontade de aprender!<br/>
-  <strong>👇 Confira abaixo os detalhes do projeto e da equipe! 👇</strong>
-</p>
+Este repositório contém a solução do exercício da **Controle de Estoque**, desenvolvido em parceria por **Fabio Thiago** e **Fernando Amorim**.
 
 ---
 
-## 🧠 Sobre o Projeto
+## 🧾 Descrição
 
-> Projeto voltado para realizar Atividades de lógica de programação utilizando Java e conexões com banco de dados
+Este exercício tem como objetivo praticar conceitos de programação como estrutura de dados e back-end.
+A proposta é simular o funcionamento de uma locadora de filmes com funcionalidades como:
+
+- 📁 Cadastro de Produto
+- 👤 Alteração de Produto
+- 📦 Listar Produtos
+- 📊 Remover Produtos
 
 ---
 
-## 👥 Integrantes
+## 💻 Tecnologias Utilizadas
+
+- Hibernate
+- Java
+- MySQL
+
+---
+
+## 🧑‍🤝‍🧑 Integrantes
 
 ### 👨‍💻 Fabio Thiago  
 - 🔗 GitHub: [@FabioPojects](https://github.com/FabioPojects)  
-- 💼 LinkedIn: [Fabio Thiago](https://www.linkedin.com/in/fabio-thiago-63375330b/)  
+- 💼 LinkedIn: [Fabio Thiago](https://www.linkedin.com/in/fabio-thiago-63375330b/)
 
 ### 👨‍💻 Fernando Amorim  
 - 🔗 GitHub: [@fernandoAmoriim](https://github.com/fernandoAmoriim)  
-- 💼 LinkedIn: [Fernando Amorim](https://www.linkedin.com/in/fernando-amorim-5b328a341/)  
+- 💼 LinkedIn: [Fernando Amorim](https://www.linkedin.com/in/fernando-amorim-5b328a341/)
 
 ---
 
-## ⚙️ Tecnologias Utilizadas
-
-- ✅ Java
-- ✅ MySQL
-- ✅ Insomnia
-- ✅ IntelliJ
-- ✅ Hibernate
-
----
-
-## 📂 Como Executar
+## 🚀 Como Executar
 
 ```bash
-# Clone este repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
+# Clone o repositório
+git clone https://github.com/AulasAtividades/ControleEstoque.git
 
-# Acesse a pasta do projeto
-cd AulasAtividades
+# Acesse a branch do exercício
+git checkout ControleEstoque
 
-# Visualize qualquer exercício desejado.
-
-
+# Visualize o que desejar dentro da aplicação
