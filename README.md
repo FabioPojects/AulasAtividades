@@ -15,10 +15,6 @@
 
 ## 👥 Integrantes
 
-### 👨‍💻 Fabio Thiago  
-- 🔗 GitHub: [@FabioPojects](https://github.com/FabioPojects)  
-- 💼 LinkedIn: [Fabio Thiago](https://www.linkedin.com/in/fabio-thiago-63375330b/)  
-
 ### 👨‍💻 Fernando Amorim  
 - 🔗 GitHub: [@fernandoAmoriim](https://github.com/fernandoAmoriim)  
 - 💼 LinkedIn: [Fernando Amorim](https://www.linkedin.com/in/fernando-amorim-5b328a341/)  
