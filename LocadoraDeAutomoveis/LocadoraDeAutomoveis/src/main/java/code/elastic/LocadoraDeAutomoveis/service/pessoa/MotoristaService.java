@@ -1,6 +1,6 @@
 package code.elastic.LocadoraDeAutomoveis.service.pessoa;
 import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaCadastroDto;
-import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaMapper;
+import code.elastic.LocadoraDeAutomoveis.dto.mapper.MotoristaMapper;
 import code.elastic.LocadoraDeAutomoveis.exception.MotoristaConflitoException;
 import code.elastic.LocadoraDeAutomoveis.exception.MotoristaNaoEncontradoException;
 import code.elastic.LocadoraDeAutomoveis.model.pessoa.Motorista;
@@ -25,6 +25,10 @@ public class MotoristaService {
             throw new MotoristaConflitoException("CPF ou e-mail já cadastrado.");
         }
         return motoristaRepository.save(MotoristaMapper.toEntity(cadastroDto));
+    }
+
+    public Motorista buscarPorCnh(String cnh){
+        return motoristaRepository.findByNumeroCNH(cnh);
     }
 
     public void deletarMotoristaPelaCNH(String cnh){

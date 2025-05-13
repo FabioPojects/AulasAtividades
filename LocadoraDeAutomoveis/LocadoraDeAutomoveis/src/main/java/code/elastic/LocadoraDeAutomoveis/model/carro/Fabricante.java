@@ -20,4 +20,8 @@ public class Fabricante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    public Fabricante(String nome) {
+        this.nome = nome;
+    }
 }

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.UUID;
 
-public interface FuncionarioRepository extends JpaRepository<Funcionario, UUID> {
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 
     @Query("SELECT MAX(f.matricula) FROM Funcionario f")
     String findMaxMatricula();
@@ -14,6 +14,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, UUID> 
     boolean existsByCpfOrEmail(String cpf, String email);
 
     boolean existsByMatricula(String matricula);
+
+    Funcionario findFuncionarioByMatricula(String matricula);
 
     void deleteFuncionarioByMatricula(String matricula);
 }

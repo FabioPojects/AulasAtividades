@@ -2,6 +2,7 @@ package code.elastic.LocadoraDeAutomoveis.model.carro;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -11,11 +12,12 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Carro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
 
     private String placa;
 
@@ -30,4 +32,13 @@ public class Carro {
 
     @ManyToMany
     private List<Acessorio> acessorios;
+
+    public Carro(String placa, String chassi, String cor, BigDecimal valorDiaria, ModeloCarro modeloCarro, List<Acessorio> acessorios) {
+        this.placa = placa;
+        this.chassi = chassi;
+        this.cor = cor;
+        this.valorDiaria = valorDiaria;
+        this.modeloCarro = modeloCarro;
+        this.acessorios = acessorios;
+    }
 }

@@ -17,7 +17,7 @@ public class Funcionario extends Pessoa {
     @Column(name = "matricula", unique = true)
     private String matricula;
 
-    public Funcionario(String cpf, LocalDate dataNascimento, Sexo sexo) {
-        super(cpf, dataNascimento, sexo);
+    public Funcionario(String cpf, String email, LocalDate dataNascimento, Sexo sexo) {
+        super(cpf, email, dataNascimento, sexo);
     }
 }

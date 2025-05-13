@@ -1,7 +1,5 @@
 package code.elastic.LocadoraDeAutomoveis.service.pessoa;
 
-import code.elastic.LocadoraDeAutomoveis.dto.funcionarioDto.FuncionarioCadastroDto;
-import code.elastic.LocadoraDeAutomoveis.dto.funcionarioDto.FuncionarioMapper;
 import code.elastic.LocadoraDeAutomoveis.exception.FuncionarioConflitoexception;
 import code.elastic.LocadoraDeAutomoveis.exception.FuncionarioNaoEncontradoException;
 import code.elastic.LocadoraDeAutomoveis.model.pessoa.Funcionario;
@@ -10,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,11 +19,21 @@ public class FuncionarioService {
         return funcionarioRepository.findAll();
     }
 
-    public Funcionario cadastrarFuncionario(FuncionarioCadastroDto cadastroDto){
-        if (funcionarioRepository.existsByCpfOrEmail(cadastroDto.cpf(), cadastroDto.email())){
+    public Funcionario cadastrarFuncionario(Funcionario funcionario){
+        if (funcionarioRepository.existsByCpfOrEmail(funcionario.getCpf(), funcionario.getEmail())){
             throw new FuncionarioConflitoexception("CPF ou e-mail já cadastrado.");
         }
-        return funcionarioRepository.save(FuncionarioMapper.toEntity(cadastroDto));
+
+        int matricula = (funcionarioRepository.findMaxMatricula() != null)
+                ? Integer.parseInt(funcionarioRepository.findMaxMatricula()) + 1 : 1;
+        String novaMatricula = String.valueOf(matricula);
+
+        funcionario.setMatricula(novaMatricula);
+        return funcionarioRepository.save(funcionario);
+    }
+
+    public Funcionario buscarPorMatricula(String matricula){
+        return funcionarioRepository.findFuncionarioByMatricula(matricula);
     }
 
     public void deletarFuncionarioPorMatricula(String matricula){

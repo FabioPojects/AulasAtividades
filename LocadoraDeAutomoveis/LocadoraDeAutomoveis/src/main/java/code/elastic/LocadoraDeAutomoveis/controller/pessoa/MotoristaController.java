@@ -1,7 +1,7 @@
-package code.elastic.LocadoraDeAutomoveis.controller;
+package code.elastic.LocadoraDeAutomoveis.controller.pessoa;
 
 import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaCadastroDto;
-import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaMapper;
+import code.elastic.LocadoraDeAutomoveis.dto.mapper.MotoristaMapper;
 import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaResponseDto;
 import code.elastic.LocadoraDeAutomoveis.model.pessoa.Motorista;
 import code.elastic.LocadoraDeAutomoveis.service.pessoa.MotoristaService;
@@ -26,8 +26,15 @@ public class MotoristaController {
     }
 
     @PostMapping
-    public ResponseEntity<MotoristaResponseDto> cadastrarMotorista(MotoristaCadastroDto dto){
+    public ResponseEntity<MotoristaResponseDto> cadastrarMotorista(@RequestBody MotoristaCadastroDto dto){
         return ResponseEntity.status(201).body(MotoristaMapper.toResponse(motoristaService.cadastrarMotorista(dto)));
+    }
+
+    @GetMapping("/cnh")
+    public ResponseEntity<MotoristaResponseDto> buscarPorCnh(@RequestParam String cnh){
+        MotoristaResponseDto responseDto =
+                MotoristaMapper.toResponse(motoristaService.buscarPorCnh(cnh));
+        return responseDto != null ? ResponseEntity.ok(responseDto) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping

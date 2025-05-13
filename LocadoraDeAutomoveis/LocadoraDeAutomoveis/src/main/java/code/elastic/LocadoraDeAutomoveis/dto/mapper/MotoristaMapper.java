@@ -1,5 +1,7 @@
-package code.elastic.LocadoraDeAutomoveis.dto.motoristaDto;
+package code.elastic.LocadoraDeAutomoveis.dto.mapper;
 
+import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaCadastroDto;
+import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaResponseDto;
 import code.elastic.LocadoraDeAutomoveis.model.pessoa.Motorista;
 
 public class MotoristaMapper {

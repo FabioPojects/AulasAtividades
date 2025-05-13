@@ -8,11 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.UUID;
 
-public interface MotoristaRepository extends JpaRepository<Motorista, UUID> {
+public interface MotoristaRepository extends JpaRepository<Motorista, Long> {
 
     boolean existsByCpfOrEmail(String cpf,String email);
 
     boolean existsMotoristaByNumeroCNH(String numeroCNH);
 
     void deleteMotoristaByNumeroCNH(String numeroCNH);
+
+    Motorista findByNumeroCNH(String numeroCNH);
 }
