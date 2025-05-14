@@ -20,4 +20,9 @@ public class Motorista extends Pessoa{
         super(cpf, email, dataNascimento, sexo);
         this.numeroCNH = numeroCNH;
     }
+
+    public Motorista(Long id, String cpf, String email, LocalDate dataNascimento, Sexo sexo, String numeroCNH) {
+        super(id, cpf, email, dataNascimento, sexo);
+        this.numeroCNH = numeroCNH;
+    }
 }

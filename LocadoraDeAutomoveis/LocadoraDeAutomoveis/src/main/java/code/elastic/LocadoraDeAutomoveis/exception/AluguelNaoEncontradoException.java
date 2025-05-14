@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class AluguelNaoEncontradorepository extends RuntimeException {
-    public AluguelNaoEncontradorepository(String message) {
+public class AluguelNaoEncontradoException extends RuntimeException {
+    public AluguelNaoEncontradoException(String message) {
     }
 }

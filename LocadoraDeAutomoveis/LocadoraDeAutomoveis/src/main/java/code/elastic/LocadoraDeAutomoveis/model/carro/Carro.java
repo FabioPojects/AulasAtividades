@@ -1,6 +1,7 @@
 package code.elastic.LocadoraDeAutomoveis.model.carro;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,16 @@ public class Carro {
     private List<Acessorio> acessorios;
 
     public Carro(String placa, String chassi, String cor, BigDecimal valorDiaria, ModeloCarro modeloCarro, List<Acessorio> acessorios) {
+        this.placa = placa;
+        this.chassi = chassi;
+        this.cor = cor;
+        this.valorDiaria = valorDiaria;
+        this.modeloCarro = modeloCarro;
+        this.acessorios = acessorios;
+    }
+
+    public Carro(Long id, String placa, String chassi, String cor, BigDecimal valorDiaria, ModeloCarro modeloCarro, List<Acessorio> acessorios) {
+        this.id = id;
         this.placa = placa;
         this.chassi = chassi;
         this.cor = cor;

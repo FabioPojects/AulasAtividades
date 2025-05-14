@@ -1,11 +1,11 @@
 package code.elastic.LocadoraDeAutomoveis.dto.aluguel;
 
-import code.elastic.LocadoraDeAutomoveis.dto.carro.CarroAluguelDto;
-import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaAluguelDto;
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
+import code.elastic.LocadoraDeAutomoveis.dto.carro.CarroResponseDto;
+import code.elastic.LocadoraDeAutomoveis.dto.motoristaDto.MotoristaResponseDto;
 
-public record AluguelResponseDto(Calendar dataPedido, Date dataDevolucao, BigDecimal valorTotal,
-                                 ApoliceAluguelDto apolice, MotoristaAluguelDto motorista, CarroAluguelDto carro) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record AluguelResponseDto(LocalDate dataPedido, LocalDate dataDevolucao, BigDecimal valorTotal,
+                                 ApoliceResponseDto apolice, MotoristaResponseDto motorista, CarroResponseDto carro) {
 }

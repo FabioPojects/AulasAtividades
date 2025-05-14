@@ -1,8 +1,8 @@
 package code.elastic.LocadoraDeAutomoveis.service.aluguel;
 
-import code.elastic.LocadoraDeAutomoveis.dto.aluguel.AluguelMapper;
+import code.elastic.LocadoraDeAutomoveis.dto.mapper.AluguelMapper;
 import code.elastic.LocadoraDeAutomoveis.dto.aluguel.AluguelRequestDto;
-import code.elastic.LocadoraDeAutomoveis.exception.AluguelNaoEncontradorepository;
+import code.elastic.LocadoraDeAutomoveis.exception.AluguelNaoEncontradoException;
 import code.elastic.LocadoraDeAutomoveis.exception.ApoliceNaoEncontradaException;
 import code.elastic.LocadoraDeAutomoveis.exception.CarroNaoEncontradoException;
 import code.elastic.LocadoraDeAutomoveis.exception.MotoristaNaoEncontradoException;
@@ -14,12 +14,12 @@ import code.elastic.LocadoraDeAutomoveis.repository.aluguel.AluguelRepository;
 import code.elastic.LocadoraDeAutomoveis.repository.aluguel.ApoliceSeguroRepository;
 import code.elastic.LocadoraDeAutomoveis.repository.carro.CarroRepository;
 import code.elastic.LocadoraDeAutomoveis.repository.pessoa.MotoristaRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -35,6 +35,10 @@ public class AluguelService {
         return aluguelRepository.findAll();
     }
 
+    public List<Aluguel> listarAlugueisDisponiveis(){
+        return aluguelRepository.buscarAlugueisDisponiveis(LocalDate.now());
+    }
+
     public Aluguel cadastrarAluguel(AluguelRequestDto dto){
         ApoliceSeguro apolice = apoliceRepository.findById(dto.apolice().id())
                 .orElseThrow(() -> new ApoliceNaoEncontradaException("Id de Apolice não encontrada"));
@@ -46,24 +50,54 @@ public class AluguelService {
                 .orElseThrow(() -> new CarroNaoEncontradoException("ID de Carro não encontrado"));
 
         Aluguel aluguel = AluguelMapper.toEntity(dto, apolice, motorista, carro);
-        Calendar dataPedido = Calendar.getInstance();
+
+        LocalDate dataPedido = LocalDate.now();
         aluguel.setDataPedido(dataPedido);
 
-        long millisPedido = dataPedido.getTimeInMillis();
-        long millisDevolucao = dto.dataDevolucao().getTime();
-        long diffMillis = millisDevolucao - millisPedido;
-        long dias = diffMillis / (1000 * 60 * 60 * 24);
-        BigDecimal diasBigDecimal = BigDecimal.valueOf(dias);
+        Period diferenca = Period.between(dataPedido, dto.dataDevolucao());
 
-        aluguel.setValorTotal(diasBigDecimal.multiply(carro.getValorDiaria()).add(apolice.getValorFranquia()));
+        // Obtém a diferença em dias
+        int dias = diferenca.getDays();
+
+        aluguel.setValorTotal(carro.getValorDiaria().multiply(BigDecimal.valueOf(dias)).add(apolice.getValorFranquia()));
         return aluguel;
     }
 
-    public Void deletarAluguel(Long id){
+    public List<Aluguel> listarAluguelNoCarrinho(){
+        return aluguelRepository.findAllByCarrinhoTrue();
+    }
+
+    public Aluguel buscarPorId(Long id){
+        return aluguelRepository.findById(id)
+                .orElseThrow(() -> new AluguelNaoEncontradoException("Aluguel não encontrado"));
+    }
+
+    public void adicionarNoCarrinho(Long id){
+        Aluguel aluguel = buscarPorId(id);
+        aluguel.setCarrinho(true);
+        return;
+    }
+
+    public void cancelarCarrinho(Long id){
+        List<Aluguel> alugueis = aluguelRepository.findAllByMotorista_IdAndCarrinhoIsTrue(id);
+        aluguelRepository.deleteAll(alugueis);
+    }
+
+    public List<Aluguel> confirmarAlugueisDoCarrinho(Long motoristaId) {
+        List<Aluguel> alugueisNoCarrinho = aluguelRepository.findAllByMotorista_IdAndCarrinhoIsTrue(motoristaId);
+        alugueisNoCarrinho.forEach(aluguel -> aluguel.setCarrinho(false));
+        return aluguelRepository.saveAll(alugueisNoCarrinho);
+    }
+
+    public List<Aluguel> listarMeusAlugueis(Long id){
+       return aluguelRepository.findAllByMotorista_IdAndDataEntregaAfterAndCarrinhoIsTrue(id, LocalDate.now());
+    }
+
+    public void deletarAluguel(Long id){
         if (aluguelRepository.existsById(id)){
             aluguelRepository.existsById(id);
         }
-        throw new AluguelNaoEncontradorepository("Aluguel com ID não encontrado");
+        throw new AluguelNaoEncontradoException("Aluguel com ID não encontrado");
     }
 
 }
