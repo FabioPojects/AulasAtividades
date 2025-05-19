@@ -92,7 +92,7 @@ class AluguelServiceTest {
 
         ApoliceAluguelDto apoliceDto = new ApoliceAluguelDto(apoliceSeguro.getId());
         CarroAluguelDto carroAluguelDto = new CarroAluguelDto(carro.getId());
-        MotoristaAluguelDto motoristaDto = new MotoristaAluguelDto(modelo.getId());
+        MotoristaAluguelDto motoristaDto = new MotoristaAluguelDto(motorista.getId());
 
         AluguelRequestDto aluguelDto = new AluguelRequestDto(LocalDate.of(2025, 5, 27), apoliceDto, carroAluguelDto, motoristaDto);
 
@@ -100,6 +100,7 @@ class AluguelServiceTest {
         when(apoliceRepository.findById(anyLong())).thenReturn(Optional.of(apoliceSeguro));
         when(motoristaRepository.findById(anyLong())).thenReturn(Optional.of(motorista));
         when(carroRepository.findById(anyLong())).thenReturn(Optional.of(carro));
+        when(aluguelRepository.save(any(Aluguel.class))).thenReturn(aluguel);
         Aluguel resposta = aluguelService.cadastrarAluguel(aluguelDto);
 
         //Then

@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @MappedSuperclass
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Getter
 @Setter
 @AllArgsConstructor

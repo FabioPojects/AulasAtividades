@@ -21,8 +21,8 @@ import java.util.List;
 
 public class AluguelMapper {
 
-    public static Aluguel toEntity(AluguelRequestDto dto, ApoliceSeguro apolice, Motorista motorista, Carro carro){
-        return new Aluguel(dto.dataDevolucao(), apolice, motorista, carro);
+    public static Aluguel toEntity(AluguelRequestDto dto, ApoliceSeguro apoliceSeguro, Motorista motorista, Carro carro){
+        return new Aluguel(dto.dataDevolucao(), apoliceSeguro, motorista, carro);
     }
 
     public static AluguelResponseDto toResponse(Aluguel entity){

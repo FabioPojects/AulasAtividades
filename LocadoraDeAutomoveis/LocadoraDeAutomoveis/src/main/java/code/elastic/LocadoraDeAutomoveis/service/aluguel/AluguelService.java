@@ -61,6 +61,7 @@ public class AluguelService {
         int dias = diferenca.getDays();
 
         aluguel.setValorTotal(carro.getValorDiaria().multiply(BigDecimal.valueOf(dias)).add(apolice.getValorFranquia()));
+
         return aluguelRepository.save(aluguel);
     }
 
